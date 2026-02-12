@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANTAGE PADEL | Premium Court Rentals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-green: #ccff00;
+            --deep-blue: #0a0e17;
+            --surface-dark: #111625;
+            --surface-light: #1c2336;
+            --text-main: #ffffff;
+            --text-muted: #8892b0;
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--deep-blue);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
+
+        .big-bg-text {
+            position: absolute;
+            font-family: var(--font-display);
+            font-size: 30vw;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 2rem 4rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(10,14,23,0.95), transparent);
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        .logo span { color: var(--neon-green); }
+
+        /* --- HERO (PAGE 1) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content { z-index: 5; }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 12vw, 15rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* --- CHOICE WINDOWS (PAGE 2) --- */
+        .choice-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0;
+            background: var(--surface-dark);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--neon-green);
+        }
+
+        .choice-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .choice-window {
+            position: relative;
+            height: 60vh;
+            background: var(--deep-blue);
+            border: 1px solid var(--border-glass);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+            cursor: pointer;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .choice-window::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--deep-blue), transparent);
+            z-index: 1;
+        }
+
+        .choice-window:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(204, 255, 0, 0.2);
+        }
+
+        .choice-window h2 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            z-index: 2;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .choice-window p { z-index: 2; color: var(--text-muted); margin-top: 1rem; }
+
+        /* --- FILTERS (PAGE 3) --- */
+        .booking-zone {
+            padding: 100px 0;
+            background: var(--deep-blue);
+        }
+
+        .booking-card {
+            background: var(--surface-dark);
+            border: 2px solid var(--neon-green);
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto; 
+            gap: 2rem;
+            align-items: end;
+            box-shadow: 30px 30px 0px var(--neon-green);
+        }
+
+        .input-group label {
+            display: block;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .input-box {
+            background: var(--surface-light);
+            border: 1px solid var(--border-glass);
+            padding: 1.2rem;
+            color: white;
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: var(--neon-green);
+            color: var(--deep-blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        /* --- MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 14, 23, 0.98);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--surface-dark);
+            padding: 4rem;
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid var(--neon-green);
+        }
+
+        /* --- TOAST --- */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--neon-green);
+            color: var(--deep-blue);
+            padding: 1rem 3rem;
+            font-weight: 900;
+            transition: 0.4s;
+            z-index: 2000;
+        }
+        #toast.show { transform: translateX(-50%) translateY(0); }
+
+        @media (max-width: 1024px) {
+            .choice-container { grid-template-columns: 1fr; }
+            .booking-card { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="big-bg-text">COURTS</div>
+
+    <nav>
+        <a href="#" class="logo">VANTAGE<span>PADEL</span></a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p style="letter-spacing: 5px; color: var(--neon-green); font-weight: 800; margin-bottom: 1rem;">ELITE RENTALS ONLY</p>
+            <h1>PLAY<br>NOW</h1>
+            <button class="btn" onclick="document.getElementById('choices').scrollIntoView()">Start Booking</button>
+        </div>
+    </section>
+
+    <section class="choice-section" id="choices">
+        <h2 class="section-title">CHOOSE YOUR EXPERIENCE</h2>
+        <div class="container">
+            <div class="choice-container">
+                <div class="choice-window" onclick="selectMode('No Trainer')">
+                    <h2>COURT<br>RENTAL</h2>
+                    <p>Standard court reservation for you and your team.</p>
+                </div>
+                <div class="choice-window" onclick="selectMode('With Trainer')">
+                    <h2>PRO<br>TRAINING</h2>
+                    <p>Reserved court including a certified padel trainer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-zone" id="booking">
+        <div class="container">
+            <form class="booking-card" onsubmit="handleBook(event)">
+                <div class="input-group">
+                    <label>Date</label>
+                    <input type="date" class="input-box" required id="b-date">
+                </div>
+                <div class="input-group">
+                    <label>Time</label>
+                    <select class="input-box" id="b-time">
+                        <option>07:00 AM - 08:30 AM</option>
+                        <option>08:30 AM - 10:00 AM</option>
+                        <option>17:00 PM - 18:30 PM</option>
+                        <option>18:30 PM - 20:00 PM</option>
+                        <option>20:00 PM - 21:30 PM</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Trainer Filter</label>
+                    <select class="input-box" id="b-trainer">
+                        <option value="No Trainer">Without Trainer</option>
+                        <option value="With Trainer">With Pro Trainer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Confirm</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content">
+            <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 1rem;">FINAL DETAILS</h2>
+            
+            <div style="background: var(--surface-light); padding: 1.5rem; margin-bottom: 2rem;">
+                <p style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Reservation Summary</p>
+                <p>Date: <span id="modal-date" style="color: white;"></span></p>
+                <p>Mode: <span id="modal-trainer" style="color: var(--neon-green);"></span></p>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 1.5rem;">
+                <label>Player Name</label>
+                <input type="text" class="input-box" placeholder="Full Name" id="player-name" required>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 2rem;">
+                <label>Phone Number</label>
+                <input type="tel" class="input-box" placeholder="+1 (555) 000-0000" id="player-phone" required>
+            </div>
+            
+            <button class="btn" style="width: 100%;" onclick="finalize()">Complete Rental</button>
+            <p onclick="closeModal()" style="text-align: center; margin-top: 1.5rem; cursor: pointer; color: var(--neon-green); font-weight: 800; font-size: 0.8rem;">CANCEL</p>
+        </div>
+    </div>
+
+    <div id="toast">RENTAL SUCCESSFUL!</div>
+
+    <script>
+        document.getElementById('b-date').valueAsDate = new Date();
+
+        function selectMode(val) {
+            document.getElementById('b-trainer').value = val;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleBook(e) {
+            e.preventDefault();
+            document.getElementById('modal-date').innerText = document.getElementById('b-date').value;
+            document.getElementById('modal-trainer').innerText = document.getElementById('b-trainer').value;
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('confirmModal').style.display = 'none'; }
+
+        function finalize() {
+            const name = document.getElementById('player-name').value;
+            const phone = document.getElementById('player-phone').value;
+
+            if (!name || !phone) {
+                alert("Please fill in both Name and Phone Number");
+                return;
+            }
+
+            document.getElementById('confirmModal').style.display = 'none';
+            const toast = document.getElementById('toast');
+            toast.innerText = "RENTAL SUCCESSFUL FOR " + name.toUpperCase();
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
